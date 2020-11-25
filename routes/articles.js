@@ -8,11 +8,14 @@ const storage =multer.diskStorage({
     destination:function(req,file,cb){
         cb(null,'uploads');
     },
-    filename:function(req,file,cb){
-        cb(null,new Date().toISOString()+ file.originalname)
-    }
+    filename: (req, file, callback) => {
+        const name = file.originalname.split(' ').join('_');
+        const extension = MIME_TYPES[file.mimetype];
+        callback(null, name + Date.now() + '.' + extension);
+      }
+    
 });
-const upload =multer({dest:"uploads/"});
+const upload =multer({storage:storage});
 
 router.get('/',getAllposts)
 
