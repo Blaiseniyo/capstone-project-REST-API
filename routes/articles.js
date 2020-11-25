@@ -4,9 +4,14 @@ const {getAllposts,getOnepost,createNewpost,deletePost,updatePost}=require("../c
 const checkAuth=require("../middleware/check-auth");
 const multer=require("multer");
 
+const MIME_TYPES = {
+    'image/jpg': 'jpg',
+    'image/jpeg': 'jpg',
+    'image/png': 'png'
+  };
 const storage =multer.diskStorage({
     destination:function(req,file,cb){
-        cb(null,'uploads');
+        cb(null,'coverImage');
     },
     filename: (req, file, callback) => {
         const name = file.originalname.split(' ').join('_');
