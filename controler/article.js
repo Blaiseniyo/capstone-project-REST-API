@@ -19,7 +19,9 @@ const getOnepost =((req,res,next)=>{
 
     Post.findById(id).exec().then(post=>{
         if(post){
-            res.send({post})
+            Comment.find({postId:id}).select({"name":1,"comment":1,"_id":0}).exec().then(comments=>{
+                res.send({post:post,comments:comments});
+            })
         }else{
             res.status(404).json({
                 message:'No valid Post for the provided ID'
