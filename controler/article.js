@@ -1,6 +1,6 @@
 const  mongoose  = require('mongoose');
 const Post = require('../models/post');
-
+const Comment = require('../models/comment');
 
 
 const getAllposts=((req,res,next)=>{
