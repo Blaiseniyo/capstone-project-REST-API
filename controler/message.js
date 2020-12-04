@@ -62,7 +62,7 @@ const deleteMessage =((req,res,next)=>{
 
 const updateMessage =((req,res,next)=>{
     const id =req.params.commentId;
-    Post.update({_id:id},{$set:req.body}).exec().then(result =>{
+    Message.update({_id:id},{$set:req.body}).exec().then(result =>{
         res.send(result)
     }).catch(err=>{
         res.status(500).json({
