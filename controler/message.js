@@ -35,9 +35,9 @@ const getOnemessage =((req,res,next)=>{
 const createNewmessage= ((req,res,next)=>{
     const message =new Message({
        _id: new mongoose.Types.ObjectId(),
-        title: req.body.title,
-        body: req.body.body,
-        image:req.body.body
+        name: req.body.name,
+        email: req.body.email,
+        message:req.body.message
     });
     message.save().then(result =>{
         console.log(result);
