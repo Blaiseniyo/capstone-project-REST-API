@@ -2,6 +2,8 @@ const express  = require('express');
 const app =express();
 const morgan = require('morgan');
 const bodyParser = require('body-parser')
+const cookieParser= require('cookie-parser');
+
 
 require("dotenv").config();
 
@@ -15,7 +17,7 @@ mongoose.connect(process.env.db_connection,{
     useCreateIndex:true
 })
 
-
+app.use(cookieParser());
 app.use(morgan('dev'));
 app.use('/uploads',express.static('uploads'))
 app.use(bodyParser.urlencoded({extended: false}));

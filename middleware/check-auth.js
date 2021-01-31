@@ -3,9 +3,21 @@ require("dotenv").config();
 
 module.exports=((req,res,next)=>{
     try{
-        const token= req.headers.authorization.split(" ")[1];
-        // console.log(token);
-        const decoded=jwt.verify(token,process.env.jwt_key);
+        const decoded=null;
+        const token=req.cookies.make;
+        //const token2= req.headers.authorization.split(" ")[1];
+        console.log(token)
+        //console.log(req.headers.cookie)
+        if(token){
+           // decoded=jwt.verify(token,process.env.jwt_key);
+            console.log("cookies");
+        }
+        else if(token2){
+            decoded=jwt.verify(token2,process.env.jwt_key);
+        }
+        else{
+            console.log("else")
+        }
         req.body.userData=decoded;
         next();
     }catch(err){
