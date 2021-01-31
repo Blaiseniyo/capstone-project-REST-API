@@ -5,18 +5,14 @@ module.exports=((req,res,next)=>{
     try{
         const decoded=null;
         const token=req.cookies.make;
-        //const token2= req.headers.authorization.split(" ")[1];
-        console.log(token)
-        //console.log(req.headers.cookie)
+        const token2= req.headers.authorization.split(" ")[1];
+        
         if(token){
-           // decoded=jwt.verify(token,process.env.jwt_key);
+            decoded=jwt.verify(token,process.env.jwt_key);
             console.log("cookies");
         }
         else if(token2){
             decoded=jwt.verify(token2,process.env.jwt_key);
-        }
-        else{
-            console.log("else")
         }
         req.body.userData=decoded;
         next();
